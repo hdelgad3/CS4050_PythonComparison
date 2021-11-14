@@ -38,7 +38,7 @@ const partition = (arr, left, right) => {
   [arr[pivot], arr[left]] = [arr[left], arr[pivot]];
   let part = left;
 
-  for (let i in arr) {
+  for (let i = left; i <= right; i++) {
     if (arr[i] < pivotValue) {
       part += 1;
       [arr[i], arr[part]] = [arr[part], arr[i]];
@@ -60,5 +60,5 @@ const quickSort = (arr, left, right) => {
 };
 
 let arr1 = [54, 26, 93, 17, 77, 31, 44, 55, 20];
-// console.log(mergeSort(arr1));
+console.log(mergeSort(arr1));
 console.log(quickSort(arr1, 0, arr1.length - 1));
