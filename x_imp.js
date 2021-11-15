@@ -26,12 +26,6 @@ const mergeSort = (arr) => {
   return merge(mergeSort(leftArr), mergeSort(rightArr));
 };
 
-const swap = (arr, val1, val2) => {
-  let tmp = arr[val1];
-  arr[val1] = arr[val2];
-  arr[val2] = arr[tmp];
-};
-
 const partition = (arr, left, right) => {
   const pivot = Math.floor(left + (right - left) / 2);
   const pivotValue = arr[pivot];
@@ -62,3 +56,31 @@ const quickSort = (arr, left, right) => {
 let arr1 = [54, 26, 93, 17, 77, 31, 44, 55, 20];
 console.log(mergeSort(arr1));
 console.log(quickSort(arr1, 0, arr1.length - 1));
+
+const arr20 = Array.from({ length: 20 }, () => Math.floor(Math.random() * 20));
+console.log("merge sort: \n" + mergeSort(arr20));
+console.log("quick sort: \n" + quickSort(arr20, 0, arr20.length - 1));
+
+const arr100 = Array.from({ length: 100 }, () =>
+  Math.floor(Math.random() * 100)
+);
+console.log("merge sort: \n" + mergeSort(arr100));
+console.log("quick sort: \n" + quickSort(arr100, 0, arr100.length - 1));
+
+const arr500 = Array.from({ length: 500 }, () =>
+  Math.floor(Math.random() * 500)
+);
+console.log("merge sort: \n" + mergeSort(arr500));
+console.log("quick sort: \n" + quickSort(arr500, 0, arr500.length - 1));
+
+const arr1000 = Array.from({ length: 1000 }, () =>
+  Math.floor(Math.random() * 1000)
+);
+console.log("merge sort: \n" + mergeSort(arr1000));
+console.log("quick sort: \n" + quickSort(arr1000, 0, arr1000.length - 1));
+
+const arr10000 = Array.from({ length: 10000 }, () =>
+  Math.floor(Math.random() * 10000)
+);
+console.log("merge sort: \n" + mergeSort(arr10000));
+console.log("quick sort: \n" + quickSort(arr10000, 0, arr10000.length - 1));
