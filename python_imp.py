@@ -1,4 +1,4 @@
-import time
+import timeit
 import random
 
 
@@ -54,35 +54,35 @@ def quickSort(aList, left, right):
 
     return aList
 
+def time_quicksort(aList):
+    left = 0
+    right = len(aList) - 1
+    result = quickSort(aList, left, right)
+
+def time_mergesort(aList):
+    result = mergeSort(aList)
+
 def python_imp_main():
     list1 = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-    sTime1 = time.time()
-    print(mergeSort(list1))
-    print(time.time() - sTime1)
-
-    sTime2 = time.time()
-    print(quickSort(list1, 0, len(list1) - 1))
-    print(time.time() - sTime2)
-
     list20 = random.sample(range(0,20),20)
-    print("merge sort: \n", mergeSort(list20))
-    print("quick sort: \n", quickSort(list20, 0, len(list20) - 1))
-
     list100 = random.sample(range(0,100),100)
-    print("merge sort: \n", mergeSort(list100))
-    print("quick sort: \n", quickSort(list100, 0, len(list100) - 1))
-
     list500 = random.sample(range(0,500),500)
-    print("merge sort: \n", mergeSort(list500))
-    print("quick sort: \n", quickSort(list500, 0, len(list500) - 1))
-
     list1000 = random.sample(range(0,1000),1000)
-    print("merge sort: \n", mergeSort(list1000))
-    print("quick sort: \n", quickSort(list1000, 0, len(list1000) - 1))
-
     list10000 = random.sample(range(0,10000),10000)
-    print("merge sort: \n", mergeSort(list10000))
-    print("quick sort: \n", quickSort(list10000, 0, len(list10000) - 1))
+    list100000 = random.sample(range(0,100000),100000)
+    list500000 = random.sample(range(0,500000),500000)
+    list1000000 = random.sample(range(0,1000000),1000000)
+    cont = [list1, list20, list100, list500, list1000, list10000, list100000, list500000, list1000000]
+
+    for i in cont:
+        quick_time = timeit.timeit(lambda:  quickSort(i, 0, len(i) - 1), number = 15)
+        print(f"Quick Sort Time for {len(i)} is {quick_time} seconds")
+    
+    for i in cont:
+        merge_time = timeit.timeit(lambda:  mergeSort(i), number = 15)
+        print(f"Merge Sort Time for {len(i)} is {merge_time} seconds")
+
+    
 
 if __name__ == '__main__':
     python_imp_main()
