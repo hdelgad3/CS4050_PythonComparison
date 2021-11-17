@@ -1,6 +1,6 @@
 import timeit
 import random
-
+import csv
 
 def merge(leftList,rightList):
     sorted = []
@@ -65,14 +65,19 @@ def python_imp_main():
     list500000 = [random.randint(0,500000) for _ in range(500000)]
     list1000000 = [random.randint(0,1000000) for _ in range(1000000)]
     list5000000 = [random.randint(0,5000000) for _ in range(5000000)]
-    cont = [list1, list20, list100, list500, list1000, list10000, list100000, list500000, list1000000, list5000000]
+    list10000000 = [random.randint(0,10000000) for _ in range(10000000)]
+    cont = [list1, list20, list100, list500, list1000, list10000, list100000, list500000, list1000000, list5000000, list10000000]
 
-    for i in cont:
-        quick_time = timeit.timeit(lambda:  quickSort(i, 0, len(i) - 1), number = 15)
-        print(f"Quick Sort Time for {len(i)} is {quick_time} seconds")
-        merge_time = timeit.timeit(lambda:  mergeSort(i), number = 15)
-        print(f"Merge Sort Time for {len(i)} is {merge_time} seconds")
-        
+    with open('python_time.csv', mode='w') as time_file:
+        time_writer = csv.writer(time_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        for i in cont:
+            quick_time = timeit.timeit(lambda:  quickSort(i, 0, len(i) - 1), number = 15)
+            print(f"Quick Sort Time for {len(i)} is {quick_time} seconds")
+            merge_time = timeit.timeit(lambda:  mergeSort(i), number = 15)
+            print(f"Merge Sort Time for {len(i)} is {merge_time} seconds")
+            time_writer.writerow([len(i), quick_time, merge_time])
+    time_file.close
 
 if __name__ == '__main__':
     python_imp_main()

@@ -111,6 +111,10 @@ const arr5000000 = Array.from({ length: 5000000 }, () =>
   Math.floor(Math.random() * 5000000)
 );
 
+const arr10000000 = Array.from({ length: 10000000 }, () =>
+  Math.floor(Math.random() * 10000000)
+);
+
 const cont = [
   arr1,
   arr20,
@@ -122,11 +126,12 @@ const cont = [
   arr500000,
   arr1000000,
   arr5000000,
+  arr10000000,
 ];
 
 for (let i of cont) {
-  console.log(`Merge sort of ${i.length}: ` + timeMergeSort(i)[1]);
-  console.log(
-    `Quick sort of ${i.length}: ` + timeQuickSort(i, 0, i.length - 1)[1]
-  );
+  let merged = timeMergeSort(i);
+  console.log(`Merge sort of ${i.length}: ` + merged[1]);
+  let quicked = timeQuickSort(i, 0, i.length - 1);
+  console.log(`Quick sort of ${i.length}: ` + quicked[1]);
 }
