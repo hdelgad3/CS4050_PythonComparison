@@ -129,9 +129,15 @@ const cont = [
   arr10000000,
 ];
 
+const merged_times = [];
+const quick_times = [];
+
 for (let i of cont) {
   let merged = timeMergeSort(i);
+  merged_times.push(merged);
   console.log(`Merge sort of ${i.length}: ` + merged[1]);
+
   let quicked = timeQuickSort(i, 0, i.length - 1);
+  quick_times.push(quicked);
   console.log(`Quick sort of ${i.length}: ` + quicked[1]);
 }
