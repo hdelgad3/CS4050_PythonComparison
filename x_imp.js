@@ -1,4 +1,3 @@
-const { performance } = require("perf_hooks");
 const merge = (leftArr, rightArr) => {
   const sorted = [];
   let leftIndex = 0;
@@ -55,77 +54,79 @@ const quickSort = (arr, left, right) => {
 };
 
 const timeQuickSort = (arr) => {
-  let start = performance.now();
+  let start = new Date();
   let left = 0;
   let right = arr.length - 1;
-  const sorted = quickSort(arr, left, right);
-  let stop = (performance.now() - start) / 1000;
+  let sorted = [];
+  for (let i = 0; i <= 15; i++) {
+    sorted = quickSort(arr, left, right);
+  }
+  let stop = (new Date() - start) / 1000;
   return [sorted, stop];
 };
 
 const timeMergeSort = (arr) => {
-  let start = performance.now();
-  const sorted = mergeSort(arr);
-  let stop = (performance.now() - start) / 1000;
+  let start = new Date();
+  let sorted = [];
+  for (let i = 0; i <= 15; i++) {
+    sorted = mergeSort(arr);
+  }
+  let stop = (new Date() - start) / 1000;
   return [sorted, stop];
 };
 
-let arr1 = [54, 26, 93, 17, 77, 31, 44, 55, 20];
-console.log("merge sort: \n" + timeMergeSort(arr1)[1]);
-console.log("quick sort: \n" + timeQuickSort(arr1, 0, arr1.length - 1)[1]);
+const arr1 = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
 
 const arr20 = Array.from({ length: 20 }, () => Math.floor(Math.random() * 20));
-console.log("merge sort: \n" + timeMergeSort(arr20)[1]);
-console.log("quick sort: \n" + timeQuickSort(arr20, 0, arr20.length - 1)[1]);
 
 const arr100 = Array.from({ length: 100 }, () =>
   Math.floor(Math.random() * 100)
 );
-console.log("merge sort: \n" + timeMergeSort(arr100)[1]);
-console.log("quick sort: \n" + timeQuickSort(arr100, 0, arr100.length - 1)[1]);
 
 const arr500 = Array.from({ length: 500 }, () =>
   Math.floor(Math.random() * 500)
 );
-console.log("merge sort: \n" + timeMergeSort(arr500)[1]);
-console.log("quick sort: \n" + timeQuickSort(arr500, 0, arr500.length - 1)[1]);
 
 const arr1000 = Array.from({ length: 1000 }, () =>
   Math.floor(Math.random() * 1000)
-);
-console.log("merge sort: \n" + timeMergeSort(arr1000)[1]);
-console.log(
-  "quick sort: \n" + timeQuickSort(arr1000, 0, arr1000.length - 1)[1]
 );
 
 const arr10000 = Array.from({ length: 10000 }, () =>
   Math.floor(Math.random() * 10000)
 );
-console.log("merge sort: \n" + timeMergeSort(arr10000)[1]);
-console.log(
-  "quick sort: \n" + timeQuickSort(arr10000, 0, arr10000.length - 1)[1]
-);
 
 const arr100000 = Array.from({ length: 100000 }, () =>
   Math.floor(Math.random() * 100000)
-);
-console.log("merge sort: \n" + timeMergeSort(arr100000)[1]);
-console.log(
-  "quick sort: \n" + timeQuickSort(arr100000, 0, arr100000.length - 1)[1]
 );
 
 const arr500000 = Array.from({ length: 500000 }, () =>
   Math.floor(Math.random() * 500000)
 );
-console.log("merge sort: \n" + timeMergeSort(arr500000)[1]);
-console.log(
-  "quick sort: \n" + timeQuickSort(arr500000, 0, arr500000.length - 1)[1]
-);
 
 const arr1000000 = Array.from({ length: 1000000 }, () =>
   Math.floor(Math.random() * 1000000)
 );
-console.log("merge sort: \n" + timeMergeSort(arr1000000)[1]);
-console.log(
-  "quick sort: \n" + timeQuickSort(arr1000000, 0, arr1000000.length - 1)[1]
+
+const arr5000000 = Array.from({ length: 5000000 }, () =>
+  Math.floor(Math.random() * 5000000)
 );
+
+const cont = [
+  arr1,
+  arr20,
+  arr100,
+  arr500,
+  arr1000,
+  arr10000,
+  arr100000,
+  arr500000,
+  arr1000000,
+  arr5000000,
+];
+
+for (let i of cont) {
+  console.log(`Merge sort of ${i.length}: ` + timeMergeSort(i)[1]);
+  console.log(
+    `Quick sort of ${i.length}: ` + timeQuickSort(i, 0, i.length - 1)[1]
+  );
+}
